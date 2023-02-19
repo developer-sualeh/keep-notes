@@ -1,5 +1,6 @@
 const userCreateDate = () => {
   const dateObj = new Date();
+  const currentDate = dateObj.getDate();
   const month = dateObj.getMonth();
 
   let timeObj = dateObj.toLocaleString("en-US", {
@@ -51,7 +52,7 @@ const userCreateDate = () => {
     default:
       break;
   }
-  const date = `${monthName}, ${dateObj.getFullYear()}, ${timeObj}`;
+  const date = `${currentDate}  ${monthName}, ${dateObj.getFullYear()}, ${timeObj}`;
   return date;
 };
 
