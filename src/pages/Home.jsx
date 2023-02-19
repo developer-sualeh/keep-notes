@@ -12,6 +12,7 @@ const Home = ({ notes, setNotes }) => {
   const [showSearch, setShowSearch] = useState(false);
   const [query, setQuery] = useState("");
   const [filterNotes, setFilterNotes] = useState(notes);
+  const [show, setShow] = useState(false);
 
   const handleSearch = () => {
     setFilterNotes(
@@ -75,9 +76,8 @@ const Home = ({ notes, setNotes }) => {
           {filterNotes.length === 0 && (
             <p className="empty__notes">No Notes Found</p>
           )}
-          {filterNotes.map((note) => (
-            <NoteItem key={note.id} note={note} />
-          ))}
+          {filterNotes !== [] &&
+            filterNotes.map((note) => <NoteItem key={note.id} note={note} />)}
         </div>
         <Link title="Create Note" to={"/create-notes"} className="btn add__btn">
           <BsPlusLg />
