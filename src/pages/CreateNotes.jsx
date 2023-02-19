@@ -1,19 +1,30 @@
 import { useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import userCreateDate from "../container/useCreateDate";
+import { v4 as uuid } from "uuid";
 
-const CreateNotes = () => {
+const CreateNotes = ({ setNotes }) => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
+  const date = userCreateDate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (title === "" || desc === "") {
-      return alert("Title and description Field are required");
-    } else {
-      console.log(title, desc);
+    if (title && desc) {
+      const inputNote = {
+        id: uuid(),
+        title,
+        desc,
+        date,
+      };
+      //add this note to the notes array
+      setNotes((prevNotes) => [inputNote, ...prevNotes]);
+      navigate("/");
     }
   };
+
   return (
     <>
       <section>
